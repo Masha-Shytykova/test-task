@@ -1,10 +1,16 @@
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import Svg from "../Svg/Svg";
+import { ModalContainer } from "./ModalStyled";
 
-const modalRoot = document.querySelector("#modal-root");
+const modalRoot = document.querySelector("#modal-root") as HTMLElement;
 
-function Modal({ closeModal, children }) {
+type Props = {
+  closeModal: () => void;
+  children: React.ReactNode;
+};
+
+function Modal({ closeModal, children }: Props) {
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
     document.body.style.overflow = "hidden";
@@ -18,31 +24,32 @@ function Modal({ closeModal, children }) {
     closeModal();
   }
 
-  function handleKeyDown(e) {
+  function handleKeyDown(e: KeyboardEvent) {
     if (e.code === "Escape") {
       closeModal();
     }
   }
 
-  function handleBackdropClick(e) {
+  function handleBackdropClick(e: React.MouseEvent<HTMLDivElement>) {
     if (e.currentTarget === e.target) {
       closeModal();
     }
   }
 
   return createPortal(
-    <div className="overlay" onClick={handleBackdropClick}>
+    <ModalContainer onClick={handleBackdropClick}>
       <div className="modal">
         <button
           onClick={onCloseBtnClick}
           type="button"
           aria-label="close-button"
+          className="closeBtn"
         >
-          <Svg icon="#icon-cross" />
+          <Svg icon="#icon-cross" width="20px" height="20px" />
         </button>
         {children}
       </div>
-    </div>,
+    </ModalContainer>,
     modalRoot
   );
 }

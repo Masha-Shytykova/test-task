@@ -1,20 +1,4 @@
-interface Allocation {
-  value: string;
-  title: string;
-  security: boolean;
-}
-
-interface Index {
-  period: string;
-  value: string;
-}
-
-interface Benchmarks {
-  id: string;
-  title: string;
-  allocations: Allocation[];
-  indices: Index[];
-}
+import { Benchmarks } from "./Types";
 
 const BenchmarksData: Benchmarks[] = [
   {
