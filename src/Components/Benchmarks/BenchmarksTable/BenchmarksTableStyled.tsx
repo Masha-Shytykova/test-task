@@ -11,15 +11,15 @@ export const StyledFlexContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+
+  .MuiFormControlLabel-label {
+    font-size: 12px;
+  }
 `;
 
 export const StyledHeader = styled.h2`
   font-size: 20px;
   font-weight: 500;
-`;
-
-export const StyledLabel = styled.label`
-  font-size: 12px;
 `;
 
 export const StyledText = styled.p`

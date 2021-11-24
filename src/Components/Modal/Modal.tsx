@@ -45,7 +45,7 @@ function Modal({ closeModal, children }: Props) {
           aria-label="close-button"
           className="closeBtn"
         >
-          <Svg icon="#icon-cross" width="20px" height="20px" />
+          <Svg icon="#icon-cross" width="15px" height="15px" />
         </button>
         {children}
       </div>

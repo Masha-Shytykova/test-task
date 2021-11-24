@@ -8,8 +8,30 @@ export const BenchmarkItemContainer = styled.li`
   padding-bottom: 10px;
 
   .firstColumn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 20%;
-    border-right: 1px solid grey;
+    height: 100%;
+  }
+
+  .verticalDivider {
+    position: relative;
+    padding-right: 30px;
+    height: 50px;
+  }
+
+  .line {
+    width: 100%;
+  }
+  .text1 {
+    position: absolute;
+    top: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    background: #fff;
+    color: rgba(0, 0, 0, 0.12);
+    transform: translateY(-50%) rotate(-90deg);
   }
   .secondColumn {
     width: 25%;
@@ -94,8 +116,5 @@ export const BenchmarkItemContainer = styled.li`
 
   .fifthColumn {
     width: 5%;
-    border: none;
-    background-color: transparent;
-    transform: rotate(90deg);
   }
 `;

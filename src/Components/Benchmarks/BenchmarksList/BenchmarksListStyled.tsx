@@ -34,4 +34,12 @@ export const BenchmarksListContainer = styled.div`
   .listDescription {
     font-size: 10px;
   }
+
+  .divider {
+    width: 80%;
+    margin-left: auto;
+    &:last-child {
+      display: none;
+    }
+  }
 `;

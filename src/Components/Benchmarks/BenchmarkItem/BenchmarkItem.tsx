@@ -1,5 +1,7 @@
 import { Allocation, Index } from "../../../Utils/Types";
 import { BenchmarkItemContainer } from "./BenchmarkItemStyled";
+import Divider from "@material-ui/core/Divider";
+import MenuListComposition from "./ItemMenu/ItemMenu";
 
 type Props = {
   id: string;
@@ -11,7 +13,13 @@ type Props = {
 function BenchmarkItem({ id, title, allocations, indices }: Props) {
   return (
     <BenchmarkItemContainer>
-      <span className="firstColumn">{id}</span>
+      <div className="firstColumn">
+        <div>{id}</div>
+        <div className="verticalDivider">
+          <Divider orientation="vertical" />
+          <div className="text1">v</div>
+        </div>
+      </div>
       <span className="secondColumn">{title}</span>
       <div className="thirdColumn">
         <span className="groupTitle">allocations</span>
@@ -34,9 +42,10 @@ function BenchmarkItem({ id, title, allocations, indices }: Props) {
           ))}
         </ul>
       </div>
-      <button className="fifthColumn" type="button">
-        ...
-      </button>
+      <div className="fifthColumn">
+        <MenuListComposition />
+      </div>
+      {/* // <Divider variant="inset" className="divider" /> */}
     </BenchmarkItemContainer>
   );
 }

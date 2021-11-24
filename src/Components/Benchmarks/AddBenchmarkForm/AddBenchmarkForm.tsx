@@ -1,6 +1,14 @@
 import { useState } from "react";
 import { Benchmarks } from "../../../Utils/Types";
+//import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+//import Button from "@material-ui/core/Button";
+//import Svg from "../../Svg/Svg";
 import { BenchmarkFormContainer } from "./AddBenchmarkFormStyled";
+import { Button, IconButton } from "@material-ui/core";
+import DeleteIcon from "@material-ui/icons/Delete";
+import AddIcon from "@material-ui/icons/Add";
+
+import CustomizedInputSearch from "./SearchInput/SearchInput";
 
 interface Props {
   benchmarksData: Benchmarks[];
@@ -8,11 +16,21 @@ interface Props {
   onSubmit: (benchmark: Benchmarks) => void;
 }
 
+// const useStyles = makeStyles((theme: Theme) =>
+//   createStyles({
+//     margin: {
+//       margin: theme.spacing(0),
+//     },
+//     extendedIcon: {
+//       marginRight: theme.spacing(0),
+//     },
+//   })
+// );
+
 const AddBenchmarkForm = ({ benchmarksData, closeModal, onSubmit }: Props) => {
   const [benchmark, setBenchmark] = useState(benchmarksData[0]);
-
+  // const classes = useStyles();
   const handleSelect = (event: React.FormEvent<HTMLSelectElement>) => {
-    console.log(event);
     setBenchmark((prevState) => ({
       ...prevState,
       id: event.currentTarget.value,
@@ -39,6 +57,7 @@ const AddBenchmarkForm = ({ benchmarksData, closeModal, onSubmit }: Props) => {
     event.preventDefault();
     onSubmit(benchmark);
     setBenchmark(benchmarksData[0]);
+    closeModal();
   };
 
   return (
@@ -51,7 +70,7 @@ const AddBenchmarkForm = ({ benchmarksData, closeModal, onSubmit }: Props) => {
         which will then be changed to not assigned.
       </p>
       <form className="formContainer" onSubmit={handleSubmit}>
-        <div className="inputWrapper">
+        <div className="colorWrapper">
           <label className="label" htmlFor="benchmarkId">
             Assign To*
           </label>
@@ -70,58 +89,109 @@ const AddBenchmarkForm = ({ benchmarksData, closeModal, onSubmit }: Props) => {
           </select>
         </div>
         <div className="inputWrapper">
-          <label className="label" htmlFor="benchmarkTitle">
-            Name*
-          </label>
-          <input
-            className="input"
-            id="benchmarkTitle"
-            type="text"
-            name="title"
-            value={benchmark.title}
-            required
-            onChange={handleChange}
-          />
+          <div className="colorWrapper">
+            <label className="label" htmlFor="benchmarkTitle">
+              Name*
+            </label>
+            <input
+              className="input"
+              id="benchmarkTitle"
+              type="text"
+              name="title"
+              value={benchmark.title}
+              required
+              onChange={handleChange}
+            />
+          </div>
+          <div className="validationRules">
+            <span>Only Alpha Numeric</span>
+            <span className="validationResult">
+              {benchmark.title.length}/ 50
+            </span>
+          </div>
         </div>
-        <span>Only Alpha Numeric ${benchmark.title.length}/ 50</span>
-        <span>--</span>
-        <label>
-          Index
-          <input
-            type="text"
-            name="title"
-            value={benchmark.allocations[0].title}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          <input
-            name="title"
-            value={benchmark.allocations[0].value}
-            onChange={handleChange}
-          />
-          %
-        </label>
-        <span>Numeric {benchmark.allocations[0].value.length}/3</span>
-        <label>
-          <input
-            name="title"
-            value={benchmark.allocations[0].value}
-            onChange={handleChange}
-          />
-          %
-        </label>
-        <span>Must total 100%</span>
-
-        <span>View Available Indices</span>
-        <span>add a component to this benchmark</span>
-        <button type="button">Search for an Index or Security</button>
-
-        <button type="button">+</button>
-        <button type="button" onClick={closeModal}>
-          Cancel
-        </button>
-        <button type="submit">Save Benchmark</button>
+        <div className="indexRow">
+          <div className="pagination">--</div>
+          <div className="inputWrapper">
+            <label className="label" htmlFor="indexTitle">
+              Index
+            </label>
+            <input
+              className="input"
+              id="indexTitle"
+              type="text"
+              name="title"
+              value={benchmark.allocations[0].title}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="inputWrapperSmall">
+            <div className="colorWrapperSmall">
+              <input
+                className="input"
+                id="indexValue"
+                name="title"
+                value={benchmark.allocations[0].value.slice(0, -1)}
+                onChange={() => {}}
+              />
+              <label htmlFor="indexValue">%</label>
+            </div>
+            <div className="validationRules">
+              <span>Numeric </span>
+              <span>{benchmark.allocations[0].value.length - 1}/3</span>
+            </div>
+          </div>
+          <IconButton
+            aria-label="delete"
+            // className={`${classes.margin} deleteBtn`}
+            className="deleteBtn"
+          >
+            <DeleteIcon fontSize="small" />
+          </IconButton>
+        </div>
+        <div className="inputWrapperSmall">
+          <div className="noColorWrapperSmall">
+            <input
+              className="input inputBold "
+              id="sumIndexValue"
+              name="title"
+              value="100"
+              onChange={() => {}}
+            />
+            <label htmlFor="sumIndexValue">%</label>
+          </div>
+          <span className="validationRules justifyCenter">Must total 100%</span>
+        </div>
+        <select
+          className="benchmarkId select"
+          name=""
+          onChange={() => {}}
+          value=""
+        >
+          <option value="">View Available Indices</option>
+        </select>
+        {/* <span>
+          <Svg icon="#icon-circle-down" /> View Available Indices
+        </span> */}
+        <p className="searchDescription">add a component to this benchmark</p>
+        <div>
+          <CustomizedInputSearch />
+          <IconButton
+            aria-label="add"
+            // className={`${classes.margin} deleteBtn`}
+            className="addBtn"
+          >
+            <AddIcon />
+          </IconButton>
+        </div>
+        <div>
+          <Button variant="outlined" color="primary" onClick={closeModal}>
+            Cancel
+          </Button>
+          <Button variant="contained" color="primary" type="submit">
+            Save Benchmark
+          </Button>
+        </div>
       </form>
     </BenchmarkFormContainer>
   );

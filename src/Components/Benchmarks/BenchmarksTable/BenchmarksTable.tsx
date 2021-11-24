@@ -11,10 +11,11 @@ import {
   StyledContainer,
   StyledFlexContainer,
   StyledHeader,
-  StyledLabel,
   StyledSpan,
   StyledText,
 } from "./BenchmarksTableStyled";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Switch from "@material-ui/core/Switch";
 
 const BenchmarksTable = () => {
   const [showModal, setShowModal] = useState(false);
@@ -44,14 +45,19 @@ const BenchmarksTable = () => {
         {/* В макете Peformance, нужно уточнить */}
         <StyledHeader>Total Performance Benchmarks</StyledHeader>
 
-        <StyledLabel>
-          <input
-            type="checkbox"
-            checked={showBenchmarks === true}
-            onChange={handleChange}
-          />{" "}
-          Enabled
-        </StyledLabel>
+        <FormControlLabel
+          className="label"
+          control={
+            <Switch
+              checked={showBenchmarks === true}
+              onChange={handleChange}
+              size="small"
+              name="checkedB"
+              color="primary"
+            />
+          }
+          label="Enabled"
+        />
       </StyledFlexContainer>
       <StyledText>
         These are comparative defaults that appear anywhere that total

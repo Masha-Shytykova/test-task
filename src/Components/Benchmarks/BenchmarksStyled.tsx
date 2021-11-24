@@ -26,6 +26,7 @@ export const StyledButton = styled.button`
   border: none;
   border-radius: 5px;
   background-color: #b6afaf;
+  line-height: 100%;
 `;
 
 export const StyledText = styled.p`

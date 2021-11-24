@@ -1,6 +1,7 @@
 import { Benchmarks } from "../../../Utils/Types";
 import BenchmarkItem from "../BenchmarkItem/BenchmarkItem";
 import { BenchmarksListContainer } from "./BenchmarksListStyled";
+import Divider from "@material-ui/core/Divider";
 
 type Props = {
   benchmarksData: Benchmarks[];
@@ -24,13 +25,21 @@ function BenchmarksList({ benchmarksData }: Props) {
       </div>
       <ul>
         {benchmarksData.map(({ id, title, allocations, indices }) => (
-          <BenchmarkItem
-            key={id}
-            id={id}
-            title={title}
-            allocations={allocations}
-            indices={indices}
-          />
+          <>
+            <BenchmarkItem
+              key={id}
+              id={id}
+              title={title}
+              allocations={allocations}
+              indices={indices}
+            />
+            <Divider
+              variant="inset"
+              component="li"
+              className="divider"
+              key={title}
+            />
+          </>
         ))}
       </ul>
     </BenchmarksListContainer>
