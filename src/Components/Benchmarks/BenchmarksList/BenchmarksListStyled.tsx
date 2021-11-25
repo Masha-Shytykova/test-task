@@ -35,11 +35,7 @@ export const BenchmarksListContainer = styled.div`
     font-size: 10px;
   }
 
-  .divider {
-    width: 80%;
-    margin-left: auto;
-    &:last-child {
-      display: none;
-    }
+  .list li:last-child .divider {
+    display: none;
   }
 `;

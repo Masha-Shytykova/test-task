@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const BenchmarkItemContainer = styled.li`
+  position: relative;
   display: flex;
   align-items: center;
   font-size: 14px;
@@ -116,5 +117,16 @@ export const BenchmarkItemContainer = styled.li`
 
   .fifthColumn {
     width: 5%;
+  }
+
+  .MuiIconButton-root:hover {
+    background-color: transparent;
+  }
+  .divider {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 80%;
+    margin-left: auto;
   }
 `;
