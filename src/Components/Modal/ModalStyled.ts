@@ -19,6 +19,13 @@ export const ModalContainer = styled.div`
     width: 530px;
     padding: 60px 20px;
     background-color: #fff;
+    transform: translateX(100%);
+
+    transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  &:hover .modal,
+  &:focus .modal {
+    transform: translateX(0);
   }
 
   .closeBtn {

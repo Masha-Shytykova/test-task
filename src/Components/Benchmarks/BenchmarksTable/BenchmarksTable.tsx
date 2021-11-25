@@ -72,7 +72,12 @@ const BenchmarksTable = () => {
         <Svg icon="#icon-plus" width="7px" height="7px" />
         <StyledButtonText>Add New</StyledButtonText>
       </StyledButton>
-      {showBenchmarks && <BenchmarksList benchmarksData={benchmarksData} />}
+      {showBenchmarks && (
+        <BenchmarksList
+          benchmarksData={benchmarksData}
+          openModal={toggleModal}
+        />
+      )}
 
       {showModal && (
         <Modal closeModal={toggleModal}>

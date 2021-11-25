@@ -100,11 +100,13 @@ export const BenchmarkFormContainer = styled.div`
   .inputBold {
     font-weight: 700;
   }
-  .select {
-    width: auto;
-    padding: 10px 0;
+  .indicesMenu {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
   }
-
   .searchDescription {
     padding: 10px;
     font-size: 12px;
@@ -115,5 +117,26 @@ export const BenchmarkFormContainer = styled.div`
     position: absolute;
     top: 0;
     right: -34px;
+  }
+  .searchWrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+  }
+
+  .addBtn {
+    color: #3f51b5;
+    border: 1px solid #3f51b5;
+  }
+  .buttonsWrapper {
+    display: flex;
+    justify-content: end;
+  }
+  .cancelButton {
+    margin-right: 15px;
+  }
+  .MuiButton-root {
+    text-transform: none;
+    font-weight: 400;
   }
 `;

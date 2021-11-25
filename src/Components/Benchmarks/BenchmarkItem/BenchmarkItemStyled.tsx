@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const BenchmarkItemContainer = styled.li`
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   font-size: 14px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -35,12 +35,15 @@ export const BenchmarkItemContainer = styled.li`
     transform: translateY(-50%) rotate(-90deg);
   }
   .secondColumn {
+    display: flex;
+    align-items: center;
     width: 25%;
+    height: 50px;
   }
 
   //////////////////////// thirdColumn
   .thirdColumn {
-    width: 35%;
+    width: 33%;
   }
 
   .groupTitle {
@@ -91,17 +94,22 @@ export const BenchmarkItemContainer = styled.li`
 
   //////////////////////// fourthColumn
   .fourthColumn {
-    width: 15%;
+    width: 17%;
+    display: flex;
+    align-items: flex-start;
   }
 
   .indicesList {
     display: flex;
     align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
   }
 
   .indicesItem {
     display: flex;
     flex-direction: column;
+
     align-items: flex-end;
     flex-basis: calc(100% / 3 - 5px);
     margin-left: 5px;

@@ -8,9 +8,10 @@ type Props = {
   title: string;
   allocations: Allocation[];
   indices: Index[];
+  openModal: () => void;
 };
 
-function BenchmarkItem({ id, title, allocations, indices }: Props) {
+function BenchmarkItem({ id, title, allocations, indices, openModal }: Props) {
   return (
     <BenchmarkItemContainer>
       <div className="firstColumn">
@@ -20,7 +21,7 @@ function BenchmarkItem({ id, title, allocations, indices }: Props) {
           <div className="text1">v</div>
         </div>
       </div>
-      <span className="secondColumn">{title}</span>
+      <div className="secondColumn">{title}</div>
       <div className="thirdColumn">
         <span className="groupTitle">allocations</span>
         <ul className="allocationsList">
@@ -43,7 +44,7 @@ function BenchmarkItem({ id, title, allocations, indices }: Props) {
         </ul>
       </div>
       <div className="fifthColumn">
-        <SimpleMenu />
+        <SimpleMenu openModal={openModal} />
       </div>
       <Divider variant="inset" className="divider" />
     </BenchmarkItemContainer>

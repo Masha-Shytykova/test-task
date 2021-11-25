@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { Benchmarks } from "../../../Utils/Types";
-//import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-//import Button from "@material-ui/core/Button";
-//import Svg from "../../Svg/Svg";
 import { BenchmarkFormContainer } from "./AddBenchmarkFormStyled";
 import { Button, IconButton } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddIcon from "@material-ui/icons/Add";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import CustomizedInputSearch from "./SearchInput/SearchInput";
 
@@ -15,17 +13,6 @@ interface Props {
   closeModal: () => void;
   onSubmit: (benchmark: Benchmarks) => void;
 }
-
-// const useStyles = makeStyles((theme: Theme) =>
-//   createStyles({
-//     margin: {
-//       margin: theme.spacing(0),
-//     },
-//     extendedIcon: {
-//       marginRight: theme.spacing(0),
-//     },
-//   })
-// );
 
 const AddBenchmarkForm = ({ benchmarksData, closeModal, onSubmit }: Props) => {
   const [benchmark, setBenchmark] = useState(benchmarksData[0]);
@@ -162,33 +149,34 @@ const AddBenchmarkForm = ({ benchmarksData, closeModal, onSubmit }: Props) => {
           </div>
           <span className="validationRules justifyCenter">Must total 100%</span>
         </div>
-        <select
-          className="benchmarkId select"
-          name=""
-          onChange={() => {}}
-          value=""
-        >
-          <option value="">View Available Indices</option>
-        </select>
-        {/* <span>
-          <Svg icon="#icon-circle-down" /> View Available Indices
-        </span> */}
+
+        <div className="indicesMenu">
+          <ExpandMoreIcon />
+          View Available Indices
+        </div>
+
         <p className="searchDescription">add a component to this benchmark</p>
-        <div>
+        <div className="searchWrapper">
           <CustomizedInputSearch />
-          <IconButton
-            aria-label="add"
-            // className={`${classes.margin} deleteBtn`}
-            className="addBtn"
-          >
+          <IconButton aria-label="add" className="addBtn">
             <AddIcon />
           </IconButton>
         </div>
-        <div>
-          <Button variant="outlined" color="primary" onClick={closeModal}>
+        <div className="buttonsWrapper">
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={closeModal}
+            className="cancelButton"
+          >
             Cancel
           </Button>
-          <Button variant="contained" color="primary" type="submit">
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            size="large"
+          >
             Save Benchmark
           </Button>
         </div>

@@ -4,6 +4,7 @@ export const StyledContainer = styled.div`
   padding: 30px 20px;
   border-radius: 4px;
   background-color: white;
+  box-shadow: 10px 10px 10px -5px rgba(0, 0, 0, 0.3);
 `;
 
 export const StyledFlexContainer = styled.div`
