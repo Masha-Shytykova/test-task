@@ -15,7 +15,7 @@ interface Props {
 }
 
 const AddBenchmarkForm = ({ benchmarksData, closeModal, onSubmit }: Props) => {
-  const [benchmark, setBenchmark] = useState(benchmarksData[0]);
+  const [benchmark, setBenchmark] = useState<Benchmarks>(benchmarksData[0]);
   // const classes = useStyles();
   const handleSelect = (event: React.FormEvent<HTMLSelectElement>) => {
     setBenchmark((prevState) => ({
@@ -32,7 +32,7 @@ const AddBenchmarkForm = ({ benchmarksData, closeModal, onSubmit }: Props) => {
       // case "id":
       //   setBenchmark((prevState) => ({ ...prevState, id: value }));
       //   break;
-      case "title":
+      case "benchmarkTitle":
         setBenchmark((prevState) => ({ ...prevState, title: value }));
         break;
       default:
@@ -118,14 +118,14 @@ const AddBenchmarkForm = ({ benchmarksData, closeModal, onSubmit }: Props) => {
                 className="input"
                 id="indexValue"
                 name="title"
-                value={benchmark.allocations[0].value.slice(0, -1)}
+                value={benchmark.allocations[0].value}
                 onChange={() => {}}
               />
               <label htmlFor="indexValue">%</label>
             </div>
             <div className="validationRules">
               <span>Numeric </span>
-              <span>{benchmark.allocations[0].value.length - 1}/3</span>
+              <span>{benchmark.allocations[0].value.toString().length}/3</span>
             </div>
           </div>
           <IconButton

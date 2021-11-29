@@ -20,19 +20,23 @@ export const BenchmarkItemContainer = styled.li`
     position: relative;
     padding-right: 30px;
     height: 50px;
+    overflow: hidden;
   }
 
   .line {
     width: 100%;
   }
-  .text1 {
+  .angle {
     position: absolute;
     top: 50%;
-    font-size: 12px;
-    font-weight: 700;
+    left: 0;
+    height: 8px;
+    width: 8px;
+
     background: #fff;
-    color: rgba(0, 0, 0, 0.12);
-    transform: translateY(-50%) rotate(-90deg);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    transform: translate(-50%, -50%) rotate(45deg);
+    overflow: hidden;
   }
   .secondColumn {
     display: flex;

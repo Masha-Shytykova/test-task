@@ -2,12 +2,13 @@ import { Benchmarks } from "../../../Utils/Types";
 import BenchmarkItem from "../BenchmarkItem/BenchmarkItem";
 import { BenchmarksListContainer } from "./BenchmarksListStyled";
 
-type Props = {
+interface Props {
   benchmarksData: Benchmarks[];
-  openModal: () => void;
-};
+  openModal: (benchmarkId: string) => void;
+  deleteBenchmark: (benchmarkId: string) => void;
+}
 
-function BenchmarksList({ benchmarksData, openModal }: Props) {
+function BenchmarksList({ benchmarksData, openModal, deleteBenchmark }: Props) {
   return (
     <BenchmarksListContainer>
       <div className="descriptionContainer">
@@ -39,6 +40,7 @@ function BenchmarksList({ benchmarksData, openModal }: Props) {
             allocations={allocations}
             indices={indices}
             openModal={openModal}
+            deleteBenchmark={deleteBenchmark}
           />
         ))}
       </ul>

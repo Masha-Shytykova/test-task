@@ -3,22 +3,30 @@ import { BenchmarkItemContainer } from "./BenchmarkItemStyled";
 import Divider from "@material-ui/core/Divider";
 import SimpleMenu from "./ItemMenu/ItemMenu";
 
-type Props = {
+interface Props {
   id: string;
   title: string;
   allocations: Allocation[];
   indices: Index[];
-  openModal: () => void;
-};
+  openModal: (benchmarkId: string) => void;
+  deleteBenchmark: (benchmarkId: string) => void;
+}
 
-function BenchmarkItem({ id, title, allocations, indices, openModal }: Props) {
+function BenchmarkItem({
+  id,
+  title,
+  allocations,
+  indices,
+  openModal,
+  deleteBenchmark,
+}: Props) {
   return (
     <BenchmarkItemContainer>
       <div className="firstColumn">
         <div>{id}</div>
         <div className="verticalDivider">
           <Divider orientation="vertical" />
-          <div className="text1">v</div>
+          <div className="angle"></div>
         </div>
       </div>
       <div className="secondColumn">{title}</div>
@@ -27,7 +35,9 @@ function BenchmarkItem({ id, title, allocations, indices, openModal }: Props) {
         <ul className="allocationsList">
           {allocations.map(({ value, title, security }) => (
             <li className="allocationsItem" key={title}>
-              <span className={security ? "security" : "index"}>{value}</span>
+              <span
+                className={security ? "security" : "index"}
+              >{`${value}%`}</span>
               <span className="allocationTitle">{title}</span>
             </li>
           ))}
@@ -44,7 +54,11 @@ function BenchmarkItem({ id, title, allocations, indices, openModal }: Props) {
         </ul>
       </div>
       <div className="fifthColumn">
-        <SimpleMenu openModal={openModal} />
+        <SimpleMenu
+          openModal={openModal}
+          deleteBenchmark={deleteBenchmark}
+          id={id}
+        />
       </div>
       <Divider variant="inset" className="divider" />
     </BenchmarkItemContainer>

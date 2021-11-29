@@ -1,9 +1,9 @@
 import { useState } from "react";
 import BenchmarksData from "../../../Utils/BenchmarksData";
 import { Benchmarks } from "../../../Utils/Types";
-import Modal from "../../Modal/Modal";
+//import Modal from "../../Modal/Modal";
 import Svg from "../../Svg/Svg";
-import AddBenchmarkForm from "../AddBenchmarkForm/AddBenchmarkForm";
+//import AddBenchmarkForm from "../AddBenchmarkForm/AddBenchmarkForm";
 import BenchmarksList from "../BenchmarksList/BenchmarksList";
 import {
   StyledButton,
@@ -16,13 +16,15 @@ import {
 } from "./BenchmarksTableStyled";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
+import BenchmarksDrawer from "../BenchmarksDrawer/BenchmarksDrawer";
 
 const BenchmarksTable = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [showBenchmarks, setShowBenchmarks] = useState(true);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [showBenchmarks, setShowBenchmarks] = useState<boolean>(true);
   const [benchmarksData, setBenchmarksData] = useState<Benchmarks[]>([
     ...BenchmarksData,
   ]);
+  const [editBenchmarkId, setEditBenchmarkId] = useState<null | string>(null);
 
   const toggleModal = () => {
     setShowModal((prevState) => !prevState);
@@ -33,10 +35,25 @@ const BenchmarksTable = () => {
   };
 
   const handleBenchmarksData = (benchmark: Benchmarks) => {
-    const updateBenchmarksData = benchmarksData.map((item) =>
-      item.id === benchmark.id ? benchmark : item
+    if (benchmarksData.find((item) => item.id === benchmark.id)) {
+      setBenchmarksData([
+        ...benchmarksData.map((item) =>
+          item.id === benchmark.id ? benchmark : item
+        ),
+      ]);
+      return;
+    }
+    setBenchmarksData([...benchmarksData, benchmark]);
+  };
+  const handleDeleteBenchmark = (benchmarkId: string) => {
+    const updateBenchmarksData = benchmarksData.filter(
+      (item) => item.id !== benchmarkId
     );
     setBenchmarksData([...updateBenchmarksData]);
+  };
+  const handleEditBenchmark = (benchmarkId: string) => {
+    setEditBenchmarkId(benchmarkId);
+    toggleModal();
   };
 
   return (
@@ -75,18 +92,28 @@ const BenchmarksTable = () => {
       {showBenchmarks && (
         <BenchmarksList
           benchmarksData={benchmarksData}
-          openModal={toggleModal}
+          openModal={handleEditBenchmark}
+          deleteBenchmark={handleDeleteBenchmark}
         />
       )}
 
       {showModal && (
-        <Modal closeModal={toggleModal}>
-          <AddBenchmarkForm
-            benchmarksData={benchmarksData}
-            closeModal={toggleModal}
+        <>
+          <BenchmarksDrawer
+            open={showModal}
+            onClose={toggleModal}
             onSubmit={handleBenchmarksData}
-          />
-        </Modal>
+            benchmarksData={benchmarksData}
+            id={editBenchmarkId}
+          ></BenchmarksDrawer>
+          {/* <Modal closeModal={toggleModal}>
+            <AddBenchmarkForm
+              benchmarksData={benchmarksData}
+              closeModal={toggleModal}
+              onSubmit={handleBenchmarksData}
+            />
+          </Modal> */}
+        </>
       )}
     </StyledContainer>
   );

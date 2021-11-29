@@ -1,5 +1,5 @@
 export interface Allocation {
-  value: string;
+  value: number;
   title: string;
   security: boolean;
 }

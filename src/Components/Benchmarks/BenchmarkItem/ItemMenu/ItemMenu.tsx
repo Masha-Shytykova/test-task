@@ -4,10 +4,12 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 
-type Props = {
-  openModal: () => void;
-};
-export default function SimpleMenu({ openModal }: Props) {
+interface Props {
+  id: string;
+  openModal: (benchmarkId: string) => void;
+  deleteBenchmark: (benchmarkId: string) => void;
+}
+export default function SimpleMenu({ openModal, deleteBenchmark, id }: Props) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -20,7 +22,12 @@ export default function SimpleMenu({ openModal }: Props) {
 
   const handleClickEditBtn = () => {
     setAnchorEl(null);
-    openModal();
+    openModal(id);
+  };
+
+  const handleClickDeleteBtn = () => {
+    setAnchorEl(null);
+    deleteBenchmark(id);
   };
 
   return (
@@ -40,7 +47,7 @@ export default function SimpleMenu({ openModal }: Props) {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClickEditBtn}>Edit</MenuItem>
-        <MenuItem onClick={handleClose}>Delete</MenuItem>
+        <MenuItem onClick={handleClickDeleteBtn}>Delete</MenuItem>
       </Menu>
     </div>
   );
