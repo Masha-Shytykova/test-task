@@ -26,4 +26,7 @@ export const IndexItemContainer = styled.li`
   .deleteBtn {
     width: 7%;
   }
+  .inputAdornment p {
+    padding: 23px 0 6px 0;
+  }
 `;

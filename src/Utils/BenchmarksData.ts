@@ -1,18 +1,18 @@
 import { Benchmarks } from "./Types";
 
 const BenchmarksData: Benchmarks[] = [
-  // {
-  //   id: "Total Performance 1",
-  //   title: "Dow Jones Industrial Average",
-  //   allocations: [
-  //     { value: 100, title: "Dow Jones Industrial Average", security: false },
-  //   ],
-  //   indices: [
-  //     { period: "1 YR", value: "+27.71" },
-  //     { period: "5 YR", value: "+27.71" },
-  //     { period: "10 YR", value: "+27.71" },
-  //   ],
-  // },
+  {
+    id: "Total Performance 1",
+    title: "Dow Jones Industrial Average",
+    allocations: [
+      { value: 100, title: "Dow Jones Industrial Average", security: false },
+    ],
+    indices: [
+      { period: "1 YR", value: "+27.71" },
+      { period: "5 YR", value: "+27.71" },
+      { period: "10 YR", value: "+27.71" },
+    ],
+  },
   {
     id: "Total Performance 2",
     title: "Private Label Domestic Growth",

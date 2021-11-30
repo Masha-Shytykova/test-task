@@ -11,26 +11,17 @@ export const StyledFlexContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-export const StyledHeader = styled.h1`
-  font-size: 28px;
-  font-weight: 500;
-`;
-
 export const StyledButton = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 180px;
+  width: 210px;
   padding: 5px 10px;
-  font-size: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.03em;
   border: none;
   border-radius: 5px;
   background-color: #b6afaf;
   line-height: 100%;
-`;
-
-export const StyledText = styled.p`
-  margin-bottom: 20px;
-  line-height: 1.4;
-  font-size: 12px;
 `;

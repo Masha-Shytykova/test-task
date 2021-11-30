@@ -1,22 +1,18 @@
 import { useState } from "react";
 import BenchmarksData from "../../../Utils/BenchmarksData";
 import { Benchmarks } from "../../../Utils/Types";
-//import Modal from "../../Modal/Modal";
-import Svg from "../../Svg/Svg";
-//import AddBenchmarkForm from "../AddBenchmarkForm/AddBenchmarkForm";
+import Button from "@material-ui/core/Button";
+import AddIcon from "@material-ui/icons/Add";
 import BenchmarksList from "../BenchmarksList/BenchmarksList";
 import {
-  StyledButton,
-  StyledButtonText,
   StyledContainer,
   StyledFlexContainer,
-  StyledHeader,
   StyledSpan,
-  StyledText,
 } from "./BenchmarksTableStyled";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import BenchmarksDrawer from "../BenchmarksDrawer/BenchmarksDrawer";
+import { Typography } from "@material-ui/core";
 
 const BenchmarksTable = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -60,7 +56,9 @@ const BenchmarksTable = () => {
     <StyledContainer>
       <StyledFlexContainer>
         {/* В макете Peformance, нужно уточнить */}
-        <StyledHeader>Total Performance Benchmarks</StyledHeader>
+        <Typography variant="h5" component="h3" gutterBottom>
+          Total Performance Benchmarks
+        </Typography>
 
         <FormControlLabel
           className="label"
@@ -76,19 +74,26 @@ const BenchmarksTable = () => {
           label="Enabled"
         />
       </StyledFlexContainer>
-      <StyledText>
+      <Typography variant="body1" component="p" paragraph>
         These are comparative defaults that appear anywhere that total
         performance for households or selected accounts are displayed. See an
         example of how these will be displayed when your have{" "}
         <a href="../../../public/index.html">benchmarks assigned and enabled</a>
         .
-      </StyledText>
+      </Typography>
 
       <StyledSpan>{benchmarksData.length} of 3 Assigned</StyledSpan>
-      <StyledButton type="button" onClick={toggleModal}>
-        <Svg icon="#icon-plus" width="7px" height="7px" />
-        <StyledButtonText>Add New</StyledButtonText>
-      </StyledButton>
+
+      <Button
+        variant="outlined"
+        color="primary"
+        size="small"
+        className="addBtn"
+        onClick={toggleModal}
+        startIcon={<AddIcon style={{ fontSize: 13 }} />}
+      >
+        Add New
+      </Button>
       {showBenchmarks && (
         <BenchmarksList
           benchmarksData={benchmarksData}
@@ -98,22 +103,13 @@ const BenchmarksTable = () => {
       )}
 
       {showModal && (
-        <>
-          <BenchmarksDrawer
-            open={showModal}
-            onClose={toggleModal}
-            onSubmit={handleBenchmarksData}
-            benchmarksData={benchmarksData}
-            id={editBenchmarkId}
-          ></BenchmarksDrawer>
-          {/* <Modal closeModal={toggleModal}>
-            <AddBenchmarkForm
-              benchmarksData={benchmarksData}
-              closeModal={toggleModal}
-              onSubmit={handleBenchmarksData}
-            />
-          </Modal> */}
-        </>
+        <BenchmarksDrawer
+          open={showModal}
+          onClose={toggleModal}
+          onSubmit={handleBenchmarksData}
+          benchmarksData={benchmarksData}
+          id={editBenchmarkId}
+        ></BenchmarksDrawer>
       )}
     </StyledContainer>
   );

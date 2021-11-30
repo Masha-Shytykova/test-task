@@ -4,6 +4,7 @@ import {
   Container,
   Divider,
   IconButton,
+  InputAdornment,
   TextField,
   Typography,
 } from "@material-ui/core";
@@ -15,7 +16,7 @@ import { StyledForm } from "./BenchmarksDrawerStyled";
 import IndexItem from "./IndexItem/IndexItem";
 import AddIcon from "@material-ui/icons/Add";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import CustomizedInputSearch from "../AddBenchmarkForm/SearchInput/SearchInput";
+import CustomizedInputSearch from "./SearchInput/SearchInput";
 
 const options: string[] = [
   "Total Performance 1",
@@ -41,6 +42,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
+
 interface Props {
   benchmarksData: Benchmarks[];
   open: boolean;
@@ -82,10 +84,6 @@ const BenchmarksDrawer = ({
       setBenchmark(newBenchmark);
       return;
     }
-    // setBenchmark((prevState) => ({
-    //   ...prevState,
-    //   id: event.target.value,
-    // }));
     setBenchmark({
       id: event.target.value,
       title: "",
@@ -95,18 +93,8 @@ const BenchmarksDrawer = ({
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.currentTarget;
-
-    switch (name) {
-      // case "id":
-      //   setBenchmark((prevState) => ({ ...prevState, id: value }));
-      //   break;
-      case "benchmarkName":
-        setBenchmark((prevState) => ({ ...prevState, title: value }));
-        break;
-      default:
-        return;
-    }
+    const { value } = event.currentTarget;
+    setBenchmark((prevState) => ({ ...prevState, title: value }));
   };
 
   const onDeleteClick = (title: string) => {
@@ -157,11 +145,6 @@ const BenchmarksDrawer = ({
             }}
             variant="filled"
           >
-            {/* {benchmarksData.map(({ id }) => (
-              <option value={id} key={id}>
-                {id}
-              </option>
-            ))} */}
             {options.map((item) => (
               <option value={item} key={item}>
                 {item}
@@ -173,7 +156,12 @@ const BenchmarksDrawer = ({
             value={benchmark.title}
             onChange={handleChange}
             label="Name"
-            helperText={`Only Alpha Numeric  ${benchmark.title.length}/ 50`}
+            helperText={
+              <span className="helperTextContainer">
+                <span>Only Alpha Numeric</span>
+                <span>{`${benchmark.title.length}/ 50`}</span>
+              </span>
+            }
             name="benchmarkName"
             fullWidth
             variant="filled"
@@ -197,6 +185,13 @@ const BenchmarksDrawer = ({
             helperText="Must total 100%"
             size="small"
             className="totalValueWrapper"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end" className="inputAdornment">
+                  %
+                </InputAdornment>
+              ),
+            }}
           />
           <div className="indicesMenu">
             <ExpandMoreIcon />

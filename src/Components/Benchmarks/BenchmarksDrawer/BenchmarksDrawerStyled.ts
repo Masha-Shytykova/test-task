@@ -26,6 +26,11 @@ export const StyledForm = styled.form`
       margin-left: 14px;
       margin-right: 14px;
     }
+    .inputAdornment p {
+      padding: 27px 0 6px;
+      font-weight: 700;
+      color: black;
+    }
   }
 
   .indicesMenu {
@@ -62,5 +67,10 @@ export const StyledForm = styled.form`
   .MuiButton-root {
     text-transform: none;
     font-weight: 400;
+  }
+
+  .helperTextContainer {
+    display: flex;
+    justify-content: space-between;
   }
 `;

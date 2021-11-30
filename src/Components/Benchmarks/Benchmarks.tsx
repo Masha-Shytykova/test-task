@@ -4,15 +4,16 @@ import {
   StyledButton,
   StyledContainer,
   StyledFlexContainer,
-  StyledHeader,
-  StyledText,
 } from "./BenchmarksStyled";
+import { Typography } from "@material-ui/core";
 
 const Benchmarks = () => {
   return (
     <StyledContainer>
       <StyledFlexContainer>
-        <StyledHeader>Performance and Benchmarks</StyledHeader>
+        <Typography variant="h4" component="h2" gutterBottom>
+          Performance and Benchmarks
+        </Typography>
         <StyledButton>
           <Svg icon="#icon-cog" />
           Perfomance Settings
@@ -20,11 +21,12 @@ const Benchmarks = () => {
         </StyledButton>
       </StyledFlexContainer>
 
-      <StyledText>
+      <Typography variant="body1" component="p" paragraph>
         Define and control your settings for displaying benchmarks. See our{" "}
         <a href="../../../public/index.html">list of indices</a> you can choose
         from.
-      </StyledText>
+      </Typography>
+
       <BenchmarksTable />
     </StyledContainer>
   );
