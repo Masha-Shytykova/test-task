@@ -7,7 +7,8 @@ export const IndexItemContainer = styled.li`
   padding-top: 10px;
   .decoration {
     width: 15%;
-    padding: 12px 0 0 4px;
+    padding: 24px 0 0 4px;
+    font-size: 10px;
   }
   .indexTitleWrapper {
     display: flex;

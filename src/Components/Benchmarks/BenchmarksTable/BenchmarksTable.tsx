@@ -13,6 +13,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import BenchmarksDrawer from "../BenchmarksDrawer/BenchmarksDrawer";
 import { Typography } from "@material-ui/core";
+import { useHistory } from "react-router";
 
 const BenchmarksTable = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -21,6 +22,7 @@ const BenchmarksTable = () => {
     ...BenchmarksData,
   ]);
   const [editBenchmarkId, setEditBenchmarkId] = useState<null | string>(null);
+  const history = useHistory();
 
   const toggleModal = () => {
     setShowModal((prevState) => !prevState);
@@ -93,6 +95,17 @@ const BenchmarksTable = () => {
         startIcon={<AddIcon style={{ fontSize: 13 }} />}
       >
         Add New
+      </Button>
+      <Button
+        variant="outlined"
+        color="primary"
+        size="small"
+        className="addBtn"
+        onClick={() => { history.push('/step1') }}
+        style={{ marginLeft: "10px" }}
+        startIcon={<AddIcon style={{ fontSize: 13 }} />}
+      >
+        Test Form 
       </Button>
       {showBenchmarks && (
         <BenchmarksList

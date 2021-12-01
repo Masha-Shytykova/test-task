@@ -28,6 +28,7 @@ const Benchmarks = () => {
       </Typography>
 
       <BenchmarksTable />
+      
     </StyledContainer>
   );
 };

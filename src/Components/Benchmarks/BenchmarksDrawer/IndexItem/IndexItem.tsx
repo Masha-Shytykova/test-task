@@ -14,7 +14,7 @@ const IndexItem = ({ value, title, onDeleteClick }: Props) => {
   };
   return (
     <IndexItemContainer>
-      <div className="decoration">--</div>
+      <div className="decoration">_ _</div>
       <div className="indexTitleWrapper">
         <span className="label">Index</span>
         <span>{title}</span>

@@ -1,3 +1,4 @@
+import { Container } from "@material-ui/core";
 import styled from "styled-components";
 
 export const StyledContainer = styled.div`
@@ -24,4 +25,14 @@ export const StyledButton = styled.button`
   border-radius: 5px;
   background-color: #b6afaf;
   line-height: 100%;
+`;
+
+export const StyledStepContainer = styled(Container)`
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 40px;
+margin: 20px;
+background-color: white;
+
 `;

@@ -59,7 +59,7 @@ const BenchmarksDrawer = ({
   id,
 }: Props) => {
   const [benchmark, setBenchmark] = useState<Benchmarks>(benchmarksData[0]);
-
+  
   useEffect(() => {
     if (id === null) {
       return;
@@ -92,10 +92,10 @@ const BenchmarksDrawer = ({
     });
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.currentTarget;
-    setBenchmark((prevState) => ({ ...prevState, title: value }));
-  };
+   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+     const { value } = event.currentTarget;
+     setBenchmark((prevState) => ({ ...prevState, title: value }));
+   };
 
   const onDeleteClick = (title: string) => {
     const updateAllocations = benchmark.allocations.filter(
@@ -106,12 +106,13 @@ const BenchmarksDrawer = ({
       allocations: updateAllocations,
     }));
   };
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    onSubmit(benchmark);
-    setBenchmark(benchmarksData[0]);
-    onClose();
-  };
+      
+   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+     event.preventDefault();
+     onSubmit(benchmark);
+     setBenchmark(benchmarksData[0]);
+     onClose();
+   };
 
   return (
     <Drawer anchor="right" open={open} onClose={onClose}>
@@ -156,13 +157,14 @@ const BenchmarksDrawer = ({
             value={benchmark.title}
             onChange={handleChange}
             label="Name"
+            name="benchmarkName"
+            // {...register("benchmarkName", { required: true, maxLength: 50,  pattern: /^[0-9a-zA-Z]+$/,})}
             helperText={
               <span className="helperTextContainer">
                 <span>Only Alpha Numeric</span>
                 <span>{`${benchmark.title.length}/ 50`}</span>
               </span>
             }
-            name="benchmarkName"
             fullWidth
             variant="filled"
             className="benchmarkNameInput"
