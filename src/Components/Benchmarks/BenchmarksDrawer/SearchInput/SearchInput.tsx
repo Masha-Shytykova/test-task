@@ -30,7 +30,13 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function CustomizedInputSearch() {
+interface Props {
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  name: string;
+}
+
+export default function CustomizedInputSearch({value, onChange, name}: Props) {
   const classes = useStyles();
 
   return (
@@ -43,6 +49,9 @@ export default function CustomizedInputSearch() {
         <SearchIcon />
       </IconButton>
       <InputBase
+        value={value}
+        onChange={onChange}
+        name={name}
         className={classes.input}
         placeholder="Search for an Index or Security"
         inputProps={{ "aria-label": "Search for an Index or Security" }}
@@ -50,3 +59,5 @@ export default function CustomizedInputSearch() {
     </Paper>
   );
 }
+
+export { };
